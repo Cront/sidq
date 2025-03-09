@@ -7,6 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
+import { Link } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
@@ -16,20 +17,22 @@ export default function Index() {
       <Image
         source={require("@/assets/images/sidqLogo.png")}
         style={styles.image}
+        resizeMode="contain"
       />
 
       <Text style={styles.text}>
-        The one stop shop for{"\n"} your{" "}
-        <Text style={styles.sadqaText}>sadqa</Text> needs
+        The one stop shop for{"\n"} your
+        <Text style={styles.sadqaText}> sadqa</Text> needs
       </Text>
 
       <View style={styles.circleOne} />
       <View style={styles.circleTwo} />
 
-      <TouchableOpacity style={styles.button}>
-        {" "}
-        <Text style={styles.getStarted}>GET STARTED</Text>{" "}
-      </TouchableOpacity>
+      <Link href="/onboarding2" asChild>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.getStarted}>GET STARTED</Text>
+        </TouchableOpacity>
+      </Link>
     </View>
   );
 }
