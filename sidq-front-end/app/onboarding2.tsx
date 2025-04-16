@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
+import { Link } from "expo-router";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
@@ -49,9 +50,11 @@ export default function onboarding2() {
         <Text style={styles.buttonText}>SIGN UP</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.proceedAsGuestButton}>
-        <Text style={styles.proceedAsGuestText}>Proceed as guest</Text>
-      </TouchableOpacity>
+      <Link href="/homePage" asChild>
+        <TouchableOpacity style={styles.proceedAsGuestButton}>
+          <Text style={styles.proceedAsGuestText}>Proceed as guest</Text>
+        </TouchableOpacity>
+      </Link>
 
       <View style={styles.circleOne} />
       <View style={styles.circleTwo} />
