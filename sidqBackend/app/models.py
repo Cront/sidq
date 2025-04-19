@@ -1,8 +1,6 @@
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 
-from flask_sqlalchemy import SQLAlchemy
-
-from config import db
+from . import db
 
 
 class Organization(db.Model):
@@ -19,10 +17,10 @@ class Organization(db.Model):
     # media storing 
     fileName = db.Column(db.String(225), nullable=True)
     mediaData = db.Column(db.LargeBinary, nullable=True)  # assuming storing a logo or document
-    mediaType = db.Column(db.String(100), nullable=True) # TODO: make sure to handle extracting file type
+    mediaType = db.Column(db.String(100), nullable=True) # TODO: make sure to handle extracting file type from user uploaded media
 
-    createdAt = db.Column(db.DateTime, default=lambda: datetime.now(UTC))
-    updatedAt = db.Column(db.DateTime, default=lambda: datetime.now(UTC), onupdate=lambda: datetime.now(UTC))
+    createdAt = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    updatedAt = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     # return organization name for debugging purposes
     def __repr__(self):
