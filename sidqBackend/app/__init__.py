@@ -3,14 +3,17 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from .config import Config
+from app.routes.organization_routes import organization_bp
 
-db = SQLAlchemy()
-migrate = Migrate()
+from .config import Config
+from .extensions import db, migrate
+
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    app.register_blueprint(organization_bp, url_prefix='/organization_routes')
 
     CORS(app)
     db.init_app(app)

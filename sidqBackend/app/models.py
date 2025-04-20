@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from . import db
+from .extensions import db
 
 
 class Organization(db.Model):
@@ -10,7 +10,7 @@ class Organization(db.Model):
     email = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
 
-    address = db.Column(db.String(225), nullable=True, unique=True)
+    address = db.Column(db.String(225), nullable=True, unique=True) # mybe orgs could have same address
     phoneNumber = db.Column(db.String(225), nullable=True)
     websiteLink = db.Column(db.String(225), nullable=True, unique=True)
 
