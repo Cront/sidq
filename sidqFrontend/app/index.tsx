@@ -11,9 +11,10 @@ import { Link } from "expo-router";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
-const scaleFactor = screenWidth / 393; // base width of iPhone 16 is 430
+// Base width for scaling (e.g., iPhone 12 Pro = 393px width)
+const scaleFactor = screenWidth / 393;
 
-export default function Index() {
+export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
       <Image
@@ -30,7 +31,7 @@ export default function Index() {
       <View style={styles.circleOne} />
       <View style={styles.circleTwo} />
 
-      <Link href="/onboarding2" asChild>
+      <Link href="/onboarding/OnboardingScreen" asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.getStarted}>GET STARTED</Text>
         </TouchableOpacity>
@@ -47,9 +48,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: screenWidth * 0.7256, // Set the width of the image
-    height: screenHeight * 0.3122, // Set the height of the image
-    resizeMode: "cover", // Ensure the image covers the container
+    width: screenWidth * 0.7256,
+    height: screenHeight * 0.3122,
+    resizeMode: "cover",
     position: "absolute",
     bottom: screenHeight * 0.4,
     left: (screenWidth - screenWidth * 0.7256) / 2,
@@ -69,8 +70,8 @@ const styles = StyleSheet.create({
     width: 15 * scaleFactor,
     height: 15 * scaleFactor,
     borderRadius: 7.5 * scaleFactor,
-    backgroundColor: "#31693E", // Add a background color
-    position: "absolute", // Ensure it's placed properly
+    backgroundColor: "#31693E",
+    position: "absolute",
     left: "45%",
     bottom: screenHeight * 0.05,
   },
@@ -80,8 +81,8 @@ const styles = StyleSheet.create({
     borderRadius: 7.5 * scaleFactor,
     backgroundColor: "#D9D9D9",
     position: "absolute",
-    bottom: screenHeight * 0.05,
     right: "45%",
+    bottom: screenHeight * 0.05,
   },
   button: {
     width: 313 * scaleFactor,
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   },
   getStarted: {
     fontFamily: "Inter",
-    fontWeight: 800,
+    fontWeight: "800",
     fontSize: 25 * scaleFactor,
     color: "#FFFFFF",
     textAlign: "center",

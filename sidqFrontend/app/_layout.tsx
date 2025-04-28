@@ -10,8 +10,9 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="onboarding2" />
-      <Stack.Screen name="homePage" />
+      <Stack.Screen name="onboarding/OnboardingScreen" />
+      <Stack.Screen name="home/HomePage" />
+      <Stack.Screen name="auth/SignUpScreen" />
     </Stack>
   );
 }
