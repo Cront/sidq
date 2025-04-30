@@ -5,17 +5,36 @@ import {
   View,
   Dimensions,
   TextInput,
+  Button,
 } from "react-native";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
+import GoogleSignInButton from "./GoogleSignInButton";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const scaleFactor = screenWidth / 393;
 
+WebBrowser.maybeCompleteAuthSession();
+
 export default function SignUpScreen() {
   const [organizationName, setOrganizationName] = useState("");
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    clientId:
+      "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
+    redirectUri: "https://auth.expo.io/@anonymous/sidq-front-end",
+  });
+
+  //
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { authentication } = response;
+      console.log("✅ Access Token:", authentication?.accessToken);
+    }
+  }, [response]);
 
   return (
     <View style={styles.container}>
@@ -26,14 +45,47 @@ export default function SignUpScreen() {
       />
 
       {/* Create Account Header */}
-      <Text style={styles.header}>Create Your Organization's Account</Text>
+      <Text style={styles.header}>Create Organization Account</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Organization Name"
-        value={organizationName}
-        onChangeText={setOrganizationName}
+      <GoogleSignInButton
+        onPress={() => promptAsync()}
+        disabled={!request}
+        style={styles.googleSignIn}
       />
+
+      <View style={styles.dividerContainer}>
+        <View style={styles.line} />
+        <Text style={styles.signUpManuallyText}>or sign up manually</Text>
+        <View style={styles.line} />
+      </View>
+
+      {/* <TextInput */}
+      {/*   style={styles.organizationNameInput} */}
+      {/*   placeholder="Organization Name" */}
+      {/*   value={organizationName} */}
+      {/*   onChangeText={setOrganizationName} */}
+      {/* /> */}
+      {/**/}
+      {/* <TextInput */}
+      {/*   style={styles.input} */}
+      {/*   placeholder="Organization Name" */}
+      {/*   value={organizationName} */}
+      {/*   onChangeText={setOrganizationName} */}
+      {/* /> */}
+      {/**/}
+      {/* <TextInput */}
+      {/*   style={styles.input} */}
+      {/*   placeholder="Organization Name" */}
+      {/*   value={organizationName} */}
+      {/*   onChangeText={setOrganizationName} */}
+      {/* /> */}
+      {/**/}
+      {/* <TextInput */}
+      {/*   style={styles.input} */}
+      {/*   placeholder="Organization Name" */}
+      {/*   value={organizationName} */}
+      {/*   onChangeText={setOrganizationName} */}
+      {/* /> */}
     </View>
   );
 }
@@ -45,27 +97,56 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  dividerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 20 * scaleFactor,
+    top: screenHeight * -0.11,
+    width: "80%",
+  },
+  googleSignIn: {
+    top: screenHeight * -0.1,
+    borderWidth: 1 * scaleFactor,
+    borderRadius: 4 * scaleFactor,
+    height: 40 * scaleFactor,
+    paddingHorizontal: 50 * scaleFactor,
+    maxWidth: 400 * scaleFactor,
+  },
+  signUpManuallyText: {
+    marginHorizontal: 10,
+    fontSize: 14,
+    color: "#888",
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "#ccc",
+  },
   image: {
-    width: 150 * scaleFactor,
-    height: 125 * scaleFactor,
+    width: 100 * scaleFactor,
+    height: 85 * scaleFactor,
     resizeMode: "cover",
     position: "absolute",
     top: screenHeight * 0.08,
-    left: screenWidth / 2 - (150 * scaleFactor) / 2,
+    left: screenWidth / 2 - (100 * scaleFactor) / 2,
   },
   header: {
     fontSize: 32 * scaleFactor,
     fontWeight: 800,
     textAlign: "center",
     position: "absolute",
-    top: screenHeight * 0.3,
+    top: screenHeight * 0.22,
+    fontFamily: "Inter",
   },
-  input: {
-    height: 40,
+  organizationNameInput: {
+    top: screenHeight * -0.05,
+    height: 55 * scaleFactor,
     borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    fontSize: 16,
+    borderWidth: 1 * scaleFactor,
+    borderRadius: 5 * scaleFactor,
+    paddingHorizontal: 175 * scaleFactor,
+    fontSize: 20 * scaleFactor,
+    paddingLeft: 10 * scaleFactor,
   },
 });
