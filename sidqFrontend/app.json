@@ -5,17 +5,20 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/sidqLogo.png",
-    "scheme": "myapp",
+    "scheme": "sidq",
+    "owner": "sidqofficial",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sidqofficial.sidqfrontend"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/sidqLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sidqofficial.sidqfrontend"
     },
     "web": {
       "bundler": "metro",
@@ -32,7 +35,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true
