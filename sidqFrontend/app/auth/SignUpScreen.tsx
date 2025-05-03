@@ -6,6 +6,8 @@ import {
   Dimensions,
   TextInput,
   Button,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
 
 import React, { useEffect, useState } from "react";
@@ -23,11 +25,89 @@ const scaleFactor = screenWidth / 393;
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignUpScreen() {
+  const handleSignUp = async () => {
+    // check all fields are present
+    if (
+      organizationName === "" ||
+      organizationEmail === "" ||
+      organizationPassword === "" ||
+      organizationConfirmPassword === ""
+    ) {
+      alert("All fields are required to set up account");
+      return;
+    }
+
+    // check proper email structure
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(organizationEmail)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    // check passwords match
+    if (organizationPassword !== organizationConfirmPassword) {
+      alert("Passwords do not match. Please try again");
+      return;
+    }
+
+    // check password length
+    if (organizationPassword.length < 8) {
+      alert(
+        "Passord length too short. Please make password at least eight characters.",
+      );
+      return;
+    }
+
+    // check one uppercase and one lowercase
+    if (
+      !/[A-Z]/.test(organizationPassword) ||
+      !/[a-z]/.test(organizationPassword)
+    ) {
+      alert("Password must have one lowercase and one uppercase character");
+      return;
+    }
+
+    const url = "http://127.0.0.1:5000/organization/create_org_account";
+    const data = {
+      name: organizationName,
+      email: organizationEmail,
+      password: organizationPassword,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Server Error: ", errorData);
+        alert("Error: " + errorData.message);
+        return;
+      }
+
+      const result = await response.json();
+      console.log("Success", result);
+      alert("Organization account succesfully created!");
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Error: " + error);
+    }
+  };
   const [organizationName, setOrganizationName] = useState("");
+  const [organizationEmail, setOrganizationEmail] = useState("");
+  const [organizationPassword, setOrganizationPassword] = useState("");
+  const [organizationConfirmPassword, setOrganizationConfirmPassword] =
+    useState("");
 
   const redirectUri = AuthSession.makeRedirectUri({
-    scheme: "sidq",
-    useProxy: false,
+    useProxy: true,
   });
 
   // console.log("Generated redirectUri:", redirectUri);
@@ -39,7 +119,6 @@ export default function SignUpScreen() {
     clientId:
       "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
     redirectUri,
-    useProxy: false,
   });
 
   //
@@ -55,81 +134,107 @@ export default function SignUpScreen() {
   }, [response]);
 
   return (
-    <View style={styles.container}>
-      {/* Sidq logo */}
+    <ScrollView
+      style={{ backgroundColor: "white", flex: 1 }}
+      contentContainerStyle={styles.container}
+    >
+      {/* Logo */}
       <Image
         source={require("@/assets/images/sidqLogo.png")}
         style={styles.image}
       />
 
-      {/* Create Account Header */}
+      {/* Header */}
       <Text style={styles.header}>Create Organization Account</Text>
 
+      {/* Google Sign In */}
       <GoogleSignInButton
         onPress={() => promptAsync()}
-        disabled={!request} // disable button if request not ready
+        disabled={!request}
         style={styles.googleSignIn}
       />
 
+      {/* Divider */}
       <View style={styles.dividerContainer}>
         <View style={styles.line} />
         <Text style={styles.signUpManuallyText}>or sign up manually</Text>
         <View style={styles.line} />
       </View>
 
-      {/* <TextInput */}
-      {/*   style={styles.organizationNameInput} */}
-      {/*   placeholder="Organization Name" */}
-      {/*   value={organizationName} */}
-      {/*   onChangeText={setOrganizationName} */}
-      {/* /> */}
-      {/**/}
-      {/* <TextInput */}
-      {/*   style={styles.input} */}
-      {/*   placeholder="Organization Name" */}
-      {/*   value={organizationName} */}
-      {/*   onChangeText={setOrganizationName} */}
-      {/* /> */}
-      {/**/}
-      {/* <TextInput */}
-      {/*   style={styles.input} */}
-      {/*   placeholder="Organization Name" */}
-      {/*   value={organizationName} */}
-      {/*   onChangeText={setOrganizationName} */}
-      {/* /> */}
-      {/**/}
-      {/* <TextInput */}
-      {/*   style={styles.input} */}
-      {/*   placeholder="Organization Name" */}
-      {/*   value={organizationName} */}
-      {/*   onChangeText={setOrganizationName} */}
-      {/* /> */}
-    </View>
+      {/* Manual Sign In */}
+      <View style={styles.manualSignIn}>
+        <TextInput
+          style={styles.input}
+          placeholder="Organization Name"
+          value={organizationName}
+          onChangeText={setOrganizationName}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Email Address"
+          value={organizationEmail}
+          onChangeText={setOrganizationEmail}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={organizationPassword}
+          onChangeText={setOrganizationPassword}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm password"
+          value={organizationConfirmPassword}
+          onChangeText={setOrganizationConfirmPassword}
+        />
+
+        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+          <Text style={styles.signUpText}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: screenHeight * 0.065,
+    paddingBottom: screenHeight * 0.12,
+    paddingHorizontal: 20,
+    alignItems: "center",
     backgroundColor: "white",
+  },
+  image: {
+    width: 100 * scaleFactor,
+    height: 85 * scaleFactor,
+    resizeMode: "contain",
+    marginBottom: 20,
+  },
+  header: {
+    fontSize: 28 * scaleFactor,
+    fontWeight: "700",
+    textAlign: "center",
+    fontFamily: "Inter",
+    marginBottom: 24,
+  },
+  googleSignIn: {
+    borderWidth: 1,
+    borderRadius: 100,
+    height: 40 * scaleFactor,
+    paddingHorizontal: 40,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 10,
   },
   dividerContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 20 * scaleFactor,
-    top: screenHeight * -0.11,
+    marginVertical: 12,
     width: "80%",
-  },
-  googleSignIn: {
-    top: screenHeight * -0.1,
-    borderWidth: 1 * scaleFactor,
-    borderRadius: 100,
-    height: 40 * scaleFactor,
-    paddingHorizontal: 50 * scaleFactor,
-    maxWidth: 400 * scaleFactor,
   },
   signUpManuallyText: {
     marginHorizontal: 10,
@@ -141,30 +246,34 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#ccc",
   },
-  image: {
-    width: 100 * scaleFactor,
-    height: 85 * scaleFactor,
-    resizeMode: "cover",
-    position: "absolute",
-    top: screenHeight * 0.08,
-    left: screenWidth / 2 - (100 * scaleFactor) / 2,
+  manualSignIn: {
+    width: "100%",
+    gap: 10,
+    marginTop: 12,
   },
-  header: {
-    fontSize: 32 * scaleFactor,
-    fontWeight: 800,
-    textAlign: "center",
-    position: "absolute",
-    top: screenHeight * 0.22,
-    fontFamily: "Inter",
-  },
-  organizationNameInput: {
-    top: screenHeight * -0.05,
-    height: 55 * scaleFactor,
+  input: {
+    height: 48 * scaleFactor,
     borderColor: "#ccc",
-    borderWidth: 1 * scaleFactor,
-    borderRadius: 5 * scaleFactor,
-    paddingHorizontal: 175 * scaleFactor,
-    fontSize: 20 * scaleFactor,
-    paddingLeft: 10 * scaleFactor,
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    fontSize: 16 * scaleFactor,
+    backgroundColor: "#fff",
+  },
+  signUpButton: {
+    width: "80%",
+    height: 56 * scaleFactor,
+    backgroundColor: "#31693E",
+    borderRadius: 28 * scaleFactor,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    marginTop: 20,
+  },
+  signUpText: {
+    fontFamily: "Inter",
+    fontWeight: "700",
+    fontSize: 25 * scaleFactor,
+    color: "white",
   },
 });
