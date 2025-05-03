@@ -10,6 +10,42 @@ organization_bp = Blueprint('organization_bp', __name__)
 def organization_home():
     return "Organization home"
 
+
+@organization_bp.route('/delete_org_account/<int:user_id>', methods=["DELETE"])
+def delete_org_account(user_id):
+    organization = Organization.query.get(user_id)
+
+    if not organization:
+        return jsonify({"message": "Organization not found"}), 404
+
+    db.session.delete(organization)
+    db.session.commit()
+
+    return jsonify({"message": "Organization deleted"}), 200
+
+
+@organization_bp.route('/delete_all_org_accounts', methods=["DELETE"])
+def delete_all_org_accounts():
+    """Function to delete all organization accounts in db"""
+    try:
+        num_deleted = Organization.query.delete()
+        db.session.commit()
+
+        return jsonify({
+            "message": "All orgs deleted",
+            "count": num_deleted
+        }), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({
+            "message": "Failed to delete organizations",
+            "error": str(e)
+        }), 500
+
+    return jsonify({"message": "All organizations deleted"}), 200
+
+
 @organization_bp.route('/create_org_account', methods=["POST"])
 def create_org_account():
     """Create a new organization account to use Sidq"""
