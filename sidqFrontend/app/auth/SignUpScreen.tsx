@@ -5,7 +5,6 @@ import {
   View,
   Dimensions,
   TextInput,
-  Button,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
@@ -106,6 +105,7 @@ export default function SignUpScreen() {
   const [organizationConfirmPassword, setOrganizationConfirmPassword] =
     useState("");
 
+  // TODO: fix 'Continue with Google' credentials issue (probably need to make Apple dev and Android dev account and connect to API)
   const redirectUri = AuthSession.makeRedirectUri({
     useProxy: true,
   });
@@ -195,6 +195,16 @@ export default function SignUpScreen() {
           <Text style={styles.signUpText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
+
+      <View style={styles.loginRedirect}>
+        <Text style={styles.alreadyHaveAccnt}>Already have an account?</Text>
+
+        <Link href="/" asChild>
+          <TouchableOpacity style={styles.logInButton}>
+            <Text style={styles.logInButtonText}>Log In</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
     </ScrollView>
   );
 }
@@ -206,6 +216,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: "center",
     backgroundColor: "white",
+  },
+  loginRedirect: {
+    paddingTop: 15,
+    alignItems: "center",
+  },
+  logInButton: {},
+  logInButtonText: {
+    fontFamily: "Inter",
+    fontSize: 20,
+    fontWeight: 600,
+    textDecorationLine: "underline",
+    paddingTop: 10,
+  },
+  alreadyHaveAccnt: {
+    fontFamily: "Inter",
+    fontSize: 14,
+    fontWeight: 400,
   },
   image: {
     width: 100 * scaleFactor,
