@@ -14,6 +14,8 @@ class Organization(db.Model):
     phone_number = db.Column(db.String(225), nullable=True)
     website_link = db.Column(db.String(225), nullable=True, unique=True)
 
+    org_description = db.Column(db.Text, nullable=True)
+
     # media storing 
     file_name = db.Column(db.String(225), nullable=True)
     media_data = db.Column(db.LargeBinary, nullable=True)  # assuming storing a logo or document

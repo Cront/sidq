@@ -7,6 +7,10 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  Keyboard,
 } from "react-native";
 
 import React, { useEffect, useState } from "react";
@@ -15,6 +19,7 @@ import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import * as AuthSession from "expo-auth-session";
 import GoogleSignInButton from "./GoogleSignInButton";
+import { useNavigation } from "@react-navigation/native";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
@@ -134,78 +139,91 @@ export default function SignUpScreen() {
   }, [response]);
 
   return (
-    <ScrollView
-      style={{ backgroundColor: "white", flex: 1 }}
-      contentContainerStyle={styles.container}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
     >
-      {/* Logo */}
-      <Image
-        source={require("@/assets/images/sidqLogo.png")}
-        style={styles.image}
-      />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView
+          style={{ backgroundColor: "white", flex: 1 }}
+          contentContainerStyle={styles.container}
+          keyboardShouldPersistTaps="handled"
+        >
+          {/* Logo */}
+          <Image
+            source={require("@/assets/images/sidqLogo.png")}
+            style={styles.image}
+          />
 
-      {/* Header */}
-      <Text style={styles.header}>Create Organization Account</Text>
+          {/* Header */}
+          <Text style={styles.header}>Create Organization Account</Text>
 
-      {/* Google Sign In */}
-      <GoogleSignInButton
-        onPress={() => promptAsync()}
-        disabled={!request}
-        style={styles.googleSignIn}
-      />
+          {/* Google Sign In */}
+          <GoogleSignInButton
+            onPress={() => promptAsync()}
+            disabled={!request}
+            style={styles.googleSignIn}
+          />
 
-      {/* Divider */}
-      <View style={styles.dividerContainer}>
-        <View style={styles.line} />
-        <Text style={styles.signUpManuallyText}>or sign up manually</Text>
-        <View style={styles.line} />
-      </View>
+          {/* Divider */}
+          <View style={styles.dividerContainer}>
+            <View style={styles.line} />
+            <Text style={styles.signUpManuallyText}>or sign up manually</Text>
+            <View style={styles.line} />
+          </View>
 
-      {/* Manual Sign In */}
-      <View style={styles.manualSignIn}>
-        <TextInput
-          style={styles.input}
-          placeholder="Organization Name"
-          value={organizationName}
-          onChangeText={setOrganizationName}
-        />
+          {/* Manual Sign In */}
+          <View style={styles.manualSignIn}>
+            <TextInput
+              style={styles.input}
+              placeholder="Organization Name"
+              value={organizationName}
+              onChangeText={setOrganizationName}
+            />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Email Address"
-          value={organizationEmail}
-          onChangeText={setOrganizationEmail}
-        />
+            <TextInput
+              style={styles.input}
+              placeholder="Email Address"
+              value={organizationEmail}
+              onChangeText={setOrganizationEmail}
+            />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={organizationPassword}
-          onChangeText={setOrganizationPassword}
-        />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              value={organizationPassword}
+              onChangeText={setOrganizationPassword}
+            />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm password"
-          value={organizationConfirmPassword}
-          onChangeText={setOrganizationConfirmPassword}
-        />
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm password"
+              value={organizationConfirmPassword}
+              onChangeText={setOrganizationConfirmPassword}
+            />
 
-        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-          <Text style={styles.signUpText}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+            <TouchableOpacity
+              style={styles.signUpButton}
+              onPress={handleSignUp}
+            >
+              <Text style={styles.signUpText}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
 
-      <View style={styles.loginRedirect}>
-        <Text style={styles.alreadyHaveAccnt}>Already have an account?</Text>
+          <View style={styles.loginRedirect}>
+            <Text style={styles.alreadyHaveAccnt}>
+              Already have an account?
+            </Text>
 
-        <Link href="/" asChild>
-          <TouchableOpacity style={styles.logInButton}>
-            <Text style={styles.logInButtonText}>Log In</Text>
-          </TouchableOpacity>
-        </Link>
-      </View>
-    </ScrollView>
+            <Link href="/" asChild>
+              <TouchableOpacity style={styles.logInButton}>
+                <Text style={styles.logInButtonText}>Log In</Text>
+              </TouchableOpacity>
+            </Link>
+          </View>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
