@@ -1,4 +1,6 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# --------------------------
+# FRONTEND: React Native / Expo
+# --------------------------
 
 # dependencies
 node_modules/
@@ -21,7 +23,7 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
-# debug
+# Debug logs
 npm-debug.*
 yarn-debug.*
 yarn-error.*
@@ -30,10 +32,47 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+# Local env files
 .env*.local
 
-# typescript
+# TypeScript
 *.tsbuildinfo
 
-app-example
+# Sample app folder
+app-example/
+
+# --------------------------
+# BACKEND: Python / Flask
+# --------------------------
+
+# Python virtual environments
+sidq-backend/venv/
+
+# Python cache and metadata
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Python packaging
+*.egg-info/
+*.egg
+
+# Logs and dumps
+*.log
+
+# SQLite or other local DB files
+*.sqlite3
+*.db
+
+# Pytest / coverage
+.coverage
+.cache/
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+
+# IDEs
+.vscode/
+.idea/
