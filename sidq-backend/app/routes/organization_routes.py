@@ -6,6 +6,7 @@ from ..models import Organization
 
 organization_bp = Blueprint('organization_bp', __name__)
 
+
 @organization_bp.route('/', methods=["GET"])
 def organization_home():
     return "Organization home"
@@ -43,8 +44,6 @@ def delete_all_org_accounts():
             "error": str(e)
         }), 500
 
-    return jsonify({"message": "All organizations deleted"}), 200
-
 
 @organization_bp.route('/create_org_account', methods=["POST"])
 def create_org_account():
@@ -53,7 +52,7 @@ def create_org_account():
     data = request.get_json()
 
     # required fields
-    name = data.get("name") 
+    name = data.get("name")
     email = data.get("email")
     password = data.get("password")
 
@@ -76,7 +75,6 @@ def create_org_account():
     if Organization.query.filter_by(email=email).first():
         return (jsonify({"message": "Email already in use"}), 409)
 
-
     new_org = Organization(
         name=name,
         email=email,
@@ -94,4 +92,3 @@ def create_org_account():
         return jsonify({"message": str(e)}, 500)
 
     return jsonify({"message": "Organization account created!"}, 201)
-
