@@ -89,6 +89,7 @@ export default function SignUpScreen() {
     try {
       const response = await fetch(url, options);
 
+      // TODO: network error here
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Server Error: ", errorData);
