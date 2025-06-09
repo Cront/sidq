@@ -5,11 +5,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Modal,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
@@ -17,6 +18,19 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const scaleFactor = screenWidth / 430;
 
 export default function OnboardingScreen() {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleSelect = (role: "user" : "organization") => {
+    setModalVisible(false);
+    const router = useRouter();
+
+    if (role === "user") {
+      // router.push('')
+    } else {
+      router.push('/auth/SignUpScreenOrg');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -42,17 +56,24 @@ export default function OnboardingScreen() {
         </LinearGradient>
       </MaskedView>
 
-      <Link href="/auth/SignUpScreen" asChild>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>SIGN UP</Text>
-        </TouchableOpacity>
-      </Link>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.buttonText}>SIGN UP</Text>
+      </TouchableOpacity>
 
-      <Link href="/homePage" asChild>
-        <TouchableOpacity style={styles.proceedAsGuestButton}>
-          <Text style={styles.proceedAsGuestText}>Proceed as guest</Text>
-        </TouchableOpacity>
-      </Link>
+      <Modal visible={modalVisible} transparent animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+
+          </View>
+        </View>
+      </Modal>
+
+      <TouchableOpacity style={styles.proceedAsGuestButton}>
+        <Text style={styles.proceedAsGuestText}>Proceed as guest</Text>
+      </TouchableOpacity>
 
       <View style={styles.circleOne} />
       <View style={styles.circleTwo} />
@@ -66,6 +87,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalBox: {
+
   },
   sidqLogo: {
     width: 90 * scaleFactor,
