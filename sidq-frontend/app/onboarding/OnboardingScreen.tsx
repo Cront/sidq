@@ -20,14 +20,14 @@ const scaleFactor = screenWidth / 430;
 export default function OnboardingScreen() {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleSelect = (role: "user" : "organization") => {
+  const handleSelect = (role: "user" | "organization") => {
     setModalVisible(false);
     const router = useRouter();
 
     if (role === "user") {
       // router.push('')
     } else {
-      router.push('/auth/SignUpScreenOrg');
+      router.push("/auth/SignUpScreenOrg");
     }
   };
 
@@ -66,7 +66,7 @@ export default function OnboardingScreen() {
       <Modal visible={modalVisible} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={styles.modalBox}>
-
+            <Text style={styles.modalText}>Continue as:</Text>
           </View>
         </View>
       </Modal>
@@ -95,8 +95,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalBox: {
-
+    width: 300,
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 12,
+    alignItems: "center",
   },
+  modalText: {},
   sidqLogo: {
     width: 90 * scaleFactor,
     height: 85 * scaleFactor,
