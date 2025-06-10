@@ -25,7 +25,7 @@ export default function OnboardingScreen() {
     const router = useRouter();
 
     if (role === "user") {
-      // router.push('')
+      router.push("/auth/SignUpScreenUser");
     } else {
       router.push("/auth/SignUpScreenOrg");
     }
@@ -66,7 +66,36 @@ export default function OnboardingScreen() {
       <Modal visible={modalVisible} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={styles.modalBox}>
-            <Text style={styles.modalText}>Continue as:</Text>
+            <Text style={styles.continueAs}>Continue as:</Text>
+            <Text style={styles.chooseYourAccount}>
+              Which type of account would you like to create
+            </Text>
+
+            <TouchableOpacity
+              style={styles.userButton}
+              onPress={() => handleSelect("user")}
+            >
+              <Image
+                source={require("@/assets/images/user-image.png")}
+                style={styles.userImage}
+              />
+              <Text style={styles.userButtonText}>User</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => handleSelect("organization")}
+              style={styles.organizationButton}
+            >
+              <Image
+                source={require("@/assets/images/organization-logo.png")}
+                style={styles.userImage}
+              />
+              <Text style={styles.userButtonText}>Organization</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <Text style={styles.closeText}>Close</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -94,14 +123,71 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  closeText: {
+    fontWeight: "600",
+    fontSize: 20,
+    marginTop: 20,
+  },
   modalBox: {
     width: 300,
+    height: 300,
     backgroundColor: "white",
-    padding: 20,
+    paddingVertical: 40,
+    paddingHorizontal: 50,
     borderRadius: 12,
     alignItems: "center",
   },
-  modalText: {},
+  userImage: {
+    width: 40,
+    height: 40,
+    color: "#184D36",
+    marginRight: 10, // space between icon and text
+  },
+  userButton: {
+    flexDirection: "row", // icon and text side by side
+    alignItems: "center", // vertically center
+    justifyContent: "flex-start", // align content to the left
+    paddingVertical: 5, // top & bottom padding
+    paddingHorizontal: 15, // left & right padding
+    borderWidth: 1, // outlined border
+    borderColor: "#184D36", // dark green
+    borderRadius: 12, // rounded corners
+    marginTop: 70,
+    width: "125%",
+  },
+  organizationButton: {
+    flexDirection: "row", // icon and text side by side
+    alignItems: "center", // vertically center
+    justifyContent: "flex-start", // align content to the left
+    paddingVertical: 5, // top & bottom padding
+    paddingHorizontal: 15, // left & right padding
+    borderWidth: 1, // outlined border
+    borderColor: "#184D36", // dark green
+    borderRadius: 12, // rounded corners
+    marginTop: 10,
+    width: "125%",
+  },
+  userButtonText: {
+    fontWeight: "800",
+    color: "#31693E",
+    fontSize: 20,
+  },
+  continueAs: {
+    fontFamily: "Inter",
+    fontSize: 25 * scaleFactor,
+    fontWeight: 800,
+    textAlign: "center",
+    position: "absolute",
+    marginTop: 20,
+  },
+  chooseYourAccount: {
+    fontFamily: "Inter",
+    fontSize: 15 * scaleFactor,
+    fontWeight: 400,
+    textAlign: "center",
+    position: "absolute",
+    marginTop: 55,
+  },
   sidqLogo: {
     width: 90 * scaleFactor,
     height: 85 * scaleFactor,
