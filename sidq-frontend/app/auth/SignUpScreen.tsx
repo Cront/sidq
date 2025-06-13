@@ -28,7 +28,7 @@ const scaleFactor = screenWidth / 393;
 // finishes any previous login session if the user left the app and returned
 WebBrowser.maybeCompleteAuthSession();
 
-export default function SignUpScreenOrg() {
+export default function SignUpScreen() {
   const handleSignUp = async () => {
     // check all fields are present
     if (
@@ -89,7 +89,6 @@ export default function SignUpScreenOrg() {
     try {
       const response = await fetch(url, options);
 
-      // TODO: network error here
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Server Error: ", errorData);
