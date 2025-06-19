@@ -61,3 +61,35 @@ def create_user_account():
     except Exception as e:
         db.session.rollback()
         return jsonify({"message": str(e)}, 500)
+
+
+@user_bp.route('/delete_all_user_accounts', methods=["DELETE"])
+def delete_all_user_accounts():
+    try:
+        num_deleted = User.query.delete()
+        db.session.commit()
+
+        return jsonify({
+            "message": "All user accounts deleted",
+            "count": num_deleted
+        }), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({
+            "message": "Unable to delete all user accounts",
+            "error": str(e)
+        }), 500
+
+
+@user_bp.route('/delete_user_account/<int:user_id>', methods=["DELETE"])
+def delete_user_account(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({"message": "User does not exist in the database"})
+
+    db.session.delete(user_id)
+    db.session.commit()
+
+    return jsonify({"message": "user account deleted"})

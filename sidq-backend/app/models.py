@@ -24,6 +24,20 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(
         timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "address": self.address,
+            "phone_number": self.phone_number,
+            "preferred_currency": self.preferred_currency,
+            "timezone": self.timezone,
+            "email_verified": self.email_verified,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
+
 
 class Organization(db.Model):
     id = db.Column(db.Integer, primary_key=True)
