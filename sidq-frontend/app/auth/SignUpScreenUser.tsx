@@ -22,7 +22,41 @@ import React, { useState, useEffect } from "react";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const scaleFactor = screenWidth / 393;
 
+WebBrowser.maybeCompleteAuthSession();
+
 export default function SignUpScreenUser() {
+  const handleSignUp = async () => {
+    if (
+      userName === "" ||
+      userEmail === "" ||
+      userPassword === "" ||
+      userConfirmPassword === ""
+    ) {
+      alert("All fields required to create account.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (userPassword !== userConfirmPassword) {
+      alert("Password's do not match.");
+      return;
+    }
+
+    if (userPassword.length < 8) {
+      alert("Password length is too short. It must be 8 characters at least.");
+      return;
+    }
+
+    if (!/[A-Z]/.test(userPassword) || !/[a-z]/.test(userPassword)) {
+      alert("One lowercase letter and one uppercase letter required.");
+      return;
+    }
+  };
+
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
