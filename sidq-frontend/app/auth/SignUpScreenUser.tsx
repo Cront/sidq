@@ -55,6 +55,41 @@ export default function SignUpScreenUser() {
       alert("One lowercase letter and one uppercase letter required.");
       return;
     }
+
+    const url = "http://127.0.0.1:5000/user/create_user_account";
+    const data = {
+      name: userName,
+      email: userEmail,
+      password: userPassword,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const errData = await response.json();
+        console.error("Server error: ", errData);
+        alert("Server error: " + errData);
+
+        return;
+      }
+
+      const result = await response.json();
+      console.log("Success: ", result);
+      alert("User account successfully created!");
+    } catch (error) {
+      console.error("Network error: ", error);
+      alert("Error: " + error);
+    }
   };
 
   const [userName, setUserName] = useState("");
@@ -154,7 +189,7 @@ export default function SignUpScreenUser() {
 
             <TouchableOpacity
               style={styles.signUpButton}
-              // onPress={handleSignUp}
+              onPress={handleSignUp}
             >
               <Text style={styles.signUpText}>Sign Up</Text>
             </TouchableOpacity>

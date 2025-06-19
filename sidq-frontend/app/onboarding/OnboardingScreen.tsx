@@ -100,8 +100,8 @@ export default function OnboardingScreen() {
         </View>
       </Modal>
 
-      <TouchableOpacity style={styles.proceedAsGuestButton}>
-        <Text style={styles.proceedAsGuestText}>Proceed as guest</Text>
+      <TouchableOpacity style={styles.logInButton}>
+        <Text style={styles.logInText}>Log in</Text>
       </TouchableOpacity>
 
       <View style={styles.circleOne} />
@@ -237,11 +237,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     textAlign: "center",
   },
-  proceedAsGuestButton: {
+  logInButton: {
     position: "absolute",
     bottom: screenHeight * 0.115,
   },
-  proceedAsGuestText: {
+  logInText: {
     fontFamily: "Inter",
     fontWeight: "700",
     fontSize: 20 * scaleFactor,

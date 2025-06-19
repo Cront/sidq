@@ -13,8 +13,8 @@ class User(db.Model):
     address = db.Column(db.String(225), nullable=True, unique=False)
     phone_number = db.Column(db.String(225), nullable=True, unique=True)
 
-    preferred_currency = db.Column(db.String(80), nullable=False, unique=False)
-    timezone = db.Column(db.String(80), nullable=False, unique=False)
+    preferred_currency = db.Column(db.String(80), nullable=True, unique=False)
+    timezone = db.Column(db.String(80), nullable=True, unique=False)
 
     # TODO: gamification & donations related
 
