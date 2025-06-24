@@ -100,9 +100,11 @@ export default function OnboardingScreen() {
         </View>
       </Modal>
 
-      <TouchableOpacity style={styles.logInButton}>
-        <Text style={styles.logInText}>Log in</Text>
-      </TouchableOpacity>
+      <Link href="/auth/LogInScreen" asChild>
+        <TouchableOpacity style={styles.logInButton}>
+          <Text style={styles.logInText}>Log in</Text>
+        </TouchableOpacity>
+      </Link>
 
       <View style={styles.circleOne} />
       <View style={styles.circleTwo} />

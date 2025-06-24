@@ -200,7 +200,7 @@ export default function SignUpScreenUser() {
               Already have an account?
             </Text>
 
-            <Link href="/" asChild>
+            <Link href="/auth/LogInScreen" asChild>
               <TouchableOpacity style={styles.logInButton}>
                 <Text style={styles.logInButtonText}>Log In</Text>
               </TouchableOpacity>
