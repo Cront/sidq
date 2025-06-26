@@ -54,6 +54,9 @@ export default function LogInScreen() {
             disabled={!request}
             style={styles.googleSignIn}
           />
+
+          {/* Divider */}
+          <View></View>
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
