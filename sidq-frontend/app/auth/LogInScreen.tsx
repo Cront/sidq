@@ -20,15 +20,15 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const scaleFactor = screenWidth / 393;
 
 export default function LogInScreen() {
-  const redirectUri = AuthSession.makeRedirectUri({
-    useProxy: true,
-  });
-
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    clientId:
-      "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
-    redirectUri,
-  });
+  // const redirectUri = AuthSession.makeRedirectUri({
+  //   useProxy: true,
+  // });
+  //
+  // const [request, response, promptAsync] = Google.useAuthRequest({
+  //   clientId:
+  //     "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
+  //   redirectUri,
+  // });
 
   return (
     <KeyboardAvoidingView
@@ -49,11 +49,11 @@ export default function LogInScreen() {
           <Text style={styles.welcomeBack}>Welcome Back</Text>
 
           {/* Google sign-in */}
-          <GoogleSignInButton
-            onPress={() => promptAsync()}
-            disabled={!request}
-            style={styles.googleSignIn}
-          />
+          {/* <GoogleSignInButton */}
+          {/*   onPress={() => promptAsync()} */}
+          {/*   disabled={!request} */}
+          {/*   style={styles.googleSignIn} */}
+          {/* /> */}
 
           {/* Divider */}
           <View></View>

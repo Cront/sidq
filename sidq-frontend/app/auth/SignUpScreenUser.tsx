@@ -98,32 +98,33 @@ export default function SignUpScreenUser() {
   const [userConfirmPassword, setUserConfirmPassword] = useState("");
 
   // TODO: fix 'Continue with Google' credentials issue (probably need to make Apple dev and Android dev account and connect to API)
-  const redirectUri = AuthSession.makeRedirectUri({
-    useProxy: true,
-  });
+
+  // const redirectUri = AuthSession.makeRedirectUri({
+  //   useProxy: true,
+  // });
 
   // console.log("Generated redirectUri:", redirectUri);
 
   // request: contains the config for the auth session
   // promptAsync: opens a browser / in-app browser
   // response: holds the result after the user signs in or cancels
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    clientId:
-      "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
-    redirectUri,
-  });
+  // const [request, response, promptAsync] = Google.useAuthRequest({
+  //   clientId:
+  //     "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
+  //   redirectUri,
+  // });
 
   //
-  useEffect(() => {
-    if (response) {
-      console.log("Response: ", JSON.stringify(response, null, 2));
-    }
-
-    if (response?.type === "success") {
-      const { authentication } = response;
-      console.log("✅ Access Token:", authentication?.accessToken);
-    }
-  }, [response]);
+  // useEffect(() => {
+  //   if (response) {
+  //     console.log("Response: ", JSON.stringify(response, null, 2));
+  //   }
+  //
+  //   if (response?.type === "success") {
+  //     const { authentication } = response;
+  //     console.log("✅ Access Token:", authentication?.accessToken);
+  //   }
+  // }, [response]);
 
   return (
     <KeyboardAvoidingView
@@ -144,18 +145,18 @@ export default function SignUpScreenUser() {
           <Text style={styles.header}>Create User Account</Text>
 
           {/* Google Sign In */}
-          <GoogleSignInButton
-            onPress={() => promptAsync()}
-            disabled={!request}
-            style={styles.googleSignIn}
-          />
+          {/* <GoogleSignInButton */}
+          {/*   onPress={() => promptAsync()} */}
+          {/*   disabled={!request} */}
+          {/*   style={styles.googleSignIn} */}
+          {/* /> */}
 
           {/* Divider */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.line} />
-            <Text style={styles.signUpManuallyText}>or sign up manually</Text>
-            <View style={styles.line} />
-          </View>
+          {/* <View style={styles.dividerContainer}> */}
+          {/*   <View style={styles.line} /> */}
+          {/*   <Text style={styles.signUpManuallyText}>or sign up manually</Text> */}
+          {/*   <View style={styles.line} /> */}
+          {/* </View> */}
 
           {/* Manual Sign In */}
           <View style={styles.manualSignIn}>

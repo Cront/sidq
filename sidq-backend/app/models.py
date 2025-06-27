@@ -6,7 +6,10 @@ from .extensions import db
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(80), nullable=False, unique=False)
+    first_name = db.Column(db.String(80), nullable=False, unique=False)
+    middle_name = db.Column(db.String(160), nullable=True, unique=False)
+    last_name = db.Column(db.String(80), nullable=False, unique=False)
+
     email = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(512), nullable=False)
 
@@ -27,7 +30,9 @@ class User(db.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "first_name": self.first_name,
+            "middle_name": self.middle_name,
+            "last_name": self.last_name,
             "email": self.email,
             "address": self.address,
             "phone_number": self.phone_number,

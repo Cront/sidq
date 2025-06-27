@@ -1,32 +1,31 @@
 import {
-  Image,
-  Text,
-  StyleSheet,
-  View,
   Dimensions,
-  TextInput,
-  ScrollView,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Platform,
+  Image,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 
-import React, { useEffect, useState } from "react";
+import * as AuthSession from "expo-auth-session";
+import * as Google from "expo-auth-session/providers/google";
 import { Link } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
-import * as AuthSession from "expo-auth-session";
+import React, { useEffect, useState } from "react";
 import GoogleSignInButton from "./GoogleSignInButton";
-import { useNavigation } from "@react-navigation/native";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const scaleFactor = screenWidth / 393;
 
 // finishes any previous login session if the user left the app and returned
-WebBrowser.maybeCompleteAuthSession();
+// WebBrowser.maybeCompleteAuthSession();
 
 export default function SignUpScreenOrg() {
   const handleSignUp = async () => {
@@ -111,33 +110,28 @@ export default function SignUpScreenOrg() {
   const [organizationConfirmPassword, setOrganizationConfirmPassword] =
     useState("");
 
-  // TODO: fix 'Continue with Google' credentials issue (probably need to make Apple dev and Android dev account and connect to API)
-  const redirectUri = AuthSession.makeRedirectUri({
-    useProxy: true,
-  });
+  // (Optional) Log the redirect URI for debugging
+  // React.useEffect(() => {
+  //   const uri = AuthSession.makeRedirectUri({ useProxy: true });
+  //   console.log("Expo Auth Redirect URI:", uri);
+  // }, []);
 
-  // console.log("Generated redirectUri:", redirectUri);
+  // Use the Google provider hook WITHOUT passing redirectUri
+  // const [request, response, promptAsync] = Google.useAuthRequest({
+  //   clientId: "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
+  //   // Do NOT pass redirectUri here!
+  // });
 
-  // request: contains the config for the auth session
-  // promptAsync: opens a browser / in-app browser
-  // response: holds the result after the user signs in or cancels
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    clientId:
-      "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
-    redirectUri,
-  });
-
+  // useEffect(() => {
+  //   if (response) {
+  //     console.log("Response: ", JSON.stringify(response, null, 2));
+  //   }
   //
-  useEffect(() => {
-    if (response) {
-      console.log("Response: ", JSON.stringify(response, null, 2));
-    }
-
-    if (response?.type === "success") {
-      const { authentication } = response;
-      console.log("✅ Access Token:", authentication?.accessToken);
-    }
-  }, [response]);
+  //   if (response?.type === "success") {
+  //     const { authentication } = response;
+  //     console.log("✅ Access Token:", authentication?.accessToken);
+  //   }
+  // }, [response]);
 
   return (
     <KeyboardAvoidingView
@@ -160,18 +154,18 @@ export default function SignUpScreenOrg() {
           <Text style={styles.header}>Create Organization Account</Text>
 
           {/* Google Sign In */}
-          <GoogleSignInButton
-            onPress={() => promptAsync()}
-            disabled={!request}
-            style={styles.googleSignIn}
-          />
+          {/* <GoogleSignInButton */}
+          {/*   onPress={() => promptAsync()} */}
+          {/*   disabled={!request} */}
+          {/*   style={styles.googleSignIn} */}
+          {/* /> */}
 
           {/* Divider */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.line} />
-            <Text style={styles.signUpManuallyText}>or sign up manually</Text>
-            <View style={styles.line} />
-          </View>
+          {/* <View style={styles.dividerContainer}> */}
+          {/*   <View style={styles.line} /> */}
+          {/*   <Text style={styles.signUpManuallyText}>or sign up manually</Text> */}
+          {/*   <View style={styles.line} /> */}
+          {/* </View> */}
 
           {/* Manual Sign In */}
           <View style={styles.manualSignIn}>
