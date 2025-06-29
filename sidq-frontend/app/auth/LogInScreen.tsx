@@ -42,7 +42,7 @@ export default function LogInScreen() {
   // const handleLogin = (userName: string, password: string) => {};
 
   const handleSignUpSelect = (role: "user" | "organization") => {
-    setModalVisible(true);
+    setModalVisible(false);
 
     const router = useRouter();
     if (role === "user") {
