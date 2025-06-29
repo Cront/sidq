@@ -18,20 +18,25 @@ def create_user_account():
     data = request.get_json()
 
     # required fields
-    name = data.get("name")
+    first_name = data.get("first_name")
+    last_name = data.get("last_name")
+
     email = data.get("email")
     password = data.get("password")
 
     email_verified = data.get("email_verified", False)
 
     # optional fields
+    middle_name = data.get("middle_name")
     address = data.get("address")
     phone_number = data.get("phone_number")
     preferred_currency = data.get("preferred_currency")
     timezone = data.get("timezone")
 
-    if not name:
-        return jsonify({"message": "You must include user's name"}), 400
+    if not first_name:
+        return jsonify({"message": "You must include user's first name"}), 400
+    if not last_name:
+        return jsonify({"message": "You must include user's last name"}), 400
     if not email:
         return jsonify({"message": "You must include user's email"}), 400
     if not password:
@@ -44,7 +49,9 @@ def create_user_account():
         return (jsonify({"message": "Phone number already in use"}), 409)
 
     new_user = User(
-        name=name,
+        first_name=first_name,
+        middle_name=middle_name,
+        last_name=last_name,
         email=email,
         password=generate_password_hash(password),
         email_verified=email_verified,

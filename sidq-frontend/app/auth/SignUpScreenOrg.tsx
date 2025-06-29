@@ -144,7 +144,6 @@ export default function SignUpScreenOrg() {
           contentContainerStyle={styles.container}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Logo */}
           <Image
             source={require("@/assets/images/sidqLogo.png")}
             style={styles.image}
@@ -185,6 +184,7 @@ export default function SignUpScreenOrg() {
 
             <TextInput
               style={styles.input}
+              secureTextEntry={true}
               placeholder="Password"
               value={organizationPassword}
               onChangeText={setOrganizationPassword}
@@ -192,6 +192,7 @@ export default function SignUpScreenOrg() {
 
             <TextInput
               style={styles.input}
+              secureTextEntry={true}
               placeholder="Confirm password"
               value={organizationConfirmPassword}
               onChangeText={setOrganizationConfirmPassword}

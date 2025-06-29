@@ -18,6 +18,7 @@ import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import * as AuthSession from "expo-auth-session";
 import React, { useState, useEffect } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const scaleFactor = screenWidth / 393;
@@ -27,7 +28,8 @@ WebBrowser.maybeCompleteAuthSession();
 export default function SignUpScreenUser() {
   const handleSignUp = async () => {
     if (
-      userName === "" ||
+      userFirstName === "" ||
+      userLastName === "" ||
       userEmail === "" ||
       userPassword === "" ||
       userConfirmPassword === ""
@@ -58,7 +60,9 @@ export default function SignUpScreenUser() {
 
     const url = "http://127.0.0.1:5000/user/create_user_account";
     const data = {
-      name: userName,
+      first_name: userFirstName,
+      middle_name: userMiddleName,
+      last_name: userLastName,
       email: userEmail,
       password: userPassword,
     };
@@ -92,10 +96,13 @@ export default function SignUpScreenUser() {
     }
   };
 
-  const [userName, setUserName] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userMiddleName, setUserMiddleName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userConfirmPassword, setUserConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // TODO: set up view password functionality
 
   // TODO: fix 'Continue with Google' credentials issue (probably need to make Apple dev and Android dev account and connect to API)
 
@@ -162,11 +169,24 @@ export default function SignUpScreenUser() {
           <View style={styles.manualSignIn}>
             <TextInput
               style={styles.input}
-              placeholder="Full Name"
-              value={userName}
-              onChangeText={setUserName}
+              placeholder="First Name"
+              value={userFirstName}
+              onChangeText={setUserFirstName}
             />
 
+            <TextInput
+              style={styles.input}
+              placeholder="Middle Name (Optional)"
+              value={userMiddleName}
+              onChangeText={setUserMiddleName}
+            />
+
+            <TextInput
+              style={styles.input}
+              placeholder="Last Name"
+              value={userLastName}
+              onChangeText={setUserLastName}
+            />
             <TextInput
               style={styles.input}
               placeholder="Email Address"
@@ -176,6 +196,7 @@ export default function SignUpScreenUser() {
 
             <TextInput
               style={styles.input}
+              secureTextEntry={true}
               placeholder="Password"
               value={userPassword}
               onChangeText={setUserPassword}
@@ -183,6 +204,7 @@ export default function SignUpScreenUser() {
 
             <TextInput
               style={styles.input}
+              secureTextEntry={true}
               placeholder="Confirm password"
               value={userConfirmPassword}
               onChangeText={setUserConfirmPassword}

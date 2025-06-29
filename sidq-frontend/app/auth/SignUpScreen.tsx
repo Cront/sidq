@@ -111,33 +111,33 @@ export default function SignUpScreen() {
     useState("");
 
   // TODO: fix 'Continue with Google' credentials issue (probably need to make Apple dev and Android dev account and connect to API)
-  // const redirectUri = AuthSession.makeRedirectUri({
-  //   useProxy: true,
-  // });
+  const redirectUri = AuthSession.makeRedirectUri({
+    useProxy: true,
+  });
 
   // console.log("Generated redirectUri:", redirectUri);
 
   // request: contains the config for the auth session
   // promptAsync: opens a browser / in-app browser
   // response: holds the result after the user signs in or cancels
-  // const [request, response, promptAsync] = Google.useAuthRequest({
-  //   clientId:
-  //     "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
-  //   redirectUri,
-  // });
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    clientId:
+      "165374973540-fevinpcp24ec316erocbregddq86smsv.apps.googleusercontent.com",
+    redirectUri,
+  });
+
   //
-  // //
-  // useEffect(() => {
-  //   if (response) {
-  //     console.log("Response: ", JSON.stringify(response, null, 2));
-  //   }
-  //
-  //   if (response?.type === "success") {
-  //     const { authentication } = response;
-  //     console.log("✅ Access Token:", authentication?.accessToken);
-  //   }
-  // }, [response]);
-  //
+  useEffect(() => {
+    if (response) {
+      console.log("Response: ", JSON.stringify(response, null, 2));
+    }
+
+    if (response?.type === "success") {
+      const { authentication } = response;
+      console.log("✅ Access Token:", authentication?.accessToken);
+    }
+  }, [response]);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
