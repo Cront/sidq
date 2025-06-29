@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from .config import Config
 from .extensions import db, migrate
+from .routes.login_routes import login_bp
 from .routes.organization_routes import organization_bp
 from .routes.user_routes import user_bp
 
@@ -13,6 +14,7 @@ def create_app():
 
     app.register_blueprint(organization_bp, url_prefix='/organization')
     app.register_blueprint(user_bp, url_prefix='/user')
+    app.register_blueprint(login_bp)
 
     CORS(app)
     db.init_app(app)

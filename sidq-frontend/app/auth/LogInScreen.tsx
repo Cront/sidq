@@ -37,6 +37,8 @@ export default function LogInScreen() {
   const [logInInfo, setLogInInfo] = useState("");
   const [logInPassword, setLogInPassword] = useState("");
 
+  const handleLogin = (userName: string, password: string) => {};
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}

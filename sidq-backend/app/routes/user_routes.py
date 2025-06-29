@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash
 
 from ..extensions import db
-from ..models import User
+from ..models import Organization, User
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -42,7 +42,7 @@ def create_user_account():
     if not password:
         return jsonify({"message": "You must include user's password"}), 400
 
-    if User.query.filter_by(email=email).first():
+    if User.query.filter_by(email=email).first() or Organization.query.filter_by(email=email).first():
         return (jsonify({"message": "Email already in use"}), 409)
 
     if phone_number and User.query.filter_by(phone_number=phone_number).first():

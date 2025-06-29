@@ -343,3 +343,256 @@ Traceback (most recent call last):
   File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
     raise configuration_module.InvalidConfiguration(
 pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:48:21,773 [PID 33181] DEBUG Using selector: KqueueSelector
+2025-06-29 15:48:21,775 [PID 33181] INFO Reading Pyre server configurations...
+2025-06-29 15:48:21,779 [PID 33181] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:48:29,619 [PID 33278] DEBUG Using selector: KqueueSelector
+2025-06-29 15:48:29,621 [PID 33278] INFO Reading Pyre server configurations...
+2025-06-29 15:48:29,622 [PID 33278] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:49:20,389 [PID 34903] DEBUG Using selector: KqueueSelector
+2025-06-29 15:49:20,391 [PID 34903] INFO Reading Pyre server configurations...
+2025-06-29 15:49:20,394 [PID 34903] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:49:26,560 [PID 34962] DEBUG Using selector: KqueueSelector
+2025-06-29 15:49:26,562 [PID 34962] INFO Reading Pyre server configurations...
+2025-06-29 15:49:26,564 [PID 34962] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:54:55,708 [PID 35598] DEBUG Using selector: KqueueSelector
+2025-06-29 15:54:55,711 [PID 35598] INFO Reading Pyre server configurations...
+2025-06-29 15:54:55,714 [PID 35598] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:55:02,999 [PID 35672] DEBUG Using selector: KqueueSelector
+2025-06-29 15:55:03,001 [PID 35672] INFO Reading Pyre server configurations...
+2025-06-29 15:55:03,004 [PID 35672] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:56:54,489 [PID 35979] DEBUG Using selector: KqueueSelector
+2025-06-29 15:56:54,491 [PID 35979] INFO Reading Pyre server configurations...
+2025-06-29 15:56:54,495 [PID 35979] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:56:57,426 [PID 36040] DEBUG Using selector: KqueueSelector
+2025-06-29 15:56:57,427 [PID 36040] INFO Reading Pyre server configurations...
+2025-06-29 15:56:57,432 [PID 36040] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 15:57:10,764 [PID 36147] DEBUG Using selector: KqueueSelector
+2025-06-29 15:57:10,765 [PID 36147] INFO Reading Pyre server configurations...
+2025-06-29 15:57:10,767 [PID 36147] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 16:38:07,148 [PID 41249] DEBUG Using selector: KqueueSelector
+2025-06-29 16:38:07,150 [PID 41249] INFO Reading Pyre server configurations...
+2025-06-29 16:38:07,155 [PID 41249] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2025-06-29 16:48:04,042 [PID 44296] DEBUG Using selector: KqueueSelector
+2025-06-29 16:48:04,050 [PID 44296] INFO Reading Pyre server configurations...
+2025-06-29 16:48:04,053 [PID 44296] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 302, in run
+    return asyncio.get_event_loop().run_until_complete(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/persistent.py", line 225, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 130, in read_server_options
+    return server_options_reader()
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 115, in read
+    return PyreServerOptions.create(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/pyre_server_options.py", line 95, in create
+    start_arguments = start.create_server_arguments(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/commands/start.py", line 316, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 398, in get_source_path_for_server
+    return get_source_path(configuration, artifact_root_name, flavor, watchman_root)
+  File "/Users/habidi2021/.local/share/nvim/mason/packages/pyre/venv/lib/python3.9/site-packages/pyre_check/client/backend_arguments.py", line 379, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.

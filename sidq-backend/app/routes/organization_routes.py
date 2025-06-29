@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from werkzeug.security import generate_password_hash
 
 from ..extensions import db
-from ..models import Organization
+from ..models import Organization, User
 
 organization_bp = Blueprint('organization_bp', __name__)
 
@@ -72,7 +72,7 @@ def create_org_account():
         return (jsonify({"message": "You must include a password"}), 400)
 
     # check same email not already used
-    if Organization.query.filter_by(email=email).first():
+    if Organization.query.filter_by(email=email).first() or User.query.filter_by(email=email).first():
         return (jsonify({"message": "Email already in use"}), 409)
 
     new_org = Organization(
