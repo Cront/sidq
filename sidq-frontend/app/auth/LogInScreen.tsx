@@ -10,10 +10,11 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   StyleSheet,
+  Modal,
   ScrollView,
 } from "react-native";
 import { useState } from "react";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import GoogleSignInButton from "./GoogleSignInButton";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
@@ -36,8 +37,20 @@ export default function LogInScreen() {
   //
   const [logInInfo, setLogInInfo] = useState("");
   const [logInPassword, setLogInPassword] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const handleLogin = (userName: string, password: string) => {};
+  // const handleLogin = (userName: string, password: string) => {};
+
+  const handleSignUpSelect = (role: "user" | "organization") => {
+    setModalVisible(true);
+
+    const router = useRouter();
+    if (role === "user") {
+      router.push("/auth/SignUpScreenUser");
+    } else {
+      router.push("/auth/SignUpScreenOrg");
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -90,11 +103,51 @@ export default function LogInScreen() {
               Don&apos;t have an account?
             </Text>
 
-            <Link href="/" asChild>
-              <TouchableOpacity>
-                <Text style={styles.signUpButtonText}>Sign Up</Text>
-              </TouchableOpacity>
-            </Link>
+            <TouchableOpacity>
+              <Text
+                onPress={() => setModalVisible(true)}
+                style={styles.signUpButtonText}
+              >
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+
+            <Modal visible={modalVisible} transparent animationType="fade">
+              <View style={styles.modalOverlay}>
+                <View style={styles.modalBox}>
+                  <Text style={styles.continueAs}>Continue as:</Text>
+                  <Text style={styles.chooseYourAccount}>
+                    Which type of account would you like to create
+                  </Text>
+
+                  <TouchableOpacity
+                    style={styles.userButton}
+                    onPress={() => handleSignUpSelect("user")}
+                  >
+                    <Image
+                      source={require("@/assets/images/user-image.png")}
+                      style={styles.userImage}
+                    />
+                    <Text style={styles.userButtonText}>User</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => handleSignUpSelect("organization")}
+                    style={styles.organizationButton}
+                  >
+                    <Image
+                      source={require("@/assets/images/organization-logo.png")}
+                      style={styles.userImage}
+                    />
+                    <Text style={styles.userButtonText}>Organization</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => setModalVisible(false)}>
+                    <Text style={styles.closeText}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
@@ -103,6 +156,77 @@ export default function LogInScreen() {
 }
 
 const styles = StyleSheet.create({
+  modalBox: {
+    width: 300,
+    height: 300,
+    backgroundColor: "white",
+    paddingVertical: 40,
+    paddingHorizontal: 50,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  continueAs: {
+    fontFamily: "Inter",
+    fontSize: 25 * scaleFactor,
+    fontWeight: 800,
+    textAlign: "center",
+    position: "absolute",
+    marginTop: 20,
+  },
+  chooseYourAccount: {
+    fontFamily: "Inter",
+    fontSize: 15 * scaleFactor,
+    fontWeight: 400,
+    textAlign: "center",
+    position: "absolute",
+    marginTop: 55,
+  },
+  userButton: {
+    flexDirection: "row", // icon and text side by side
+    alignItems: "center", // vertically center
+    justifyContent: "flex-start", // align content to the left
+    paddingVertical: 5, // top & bottom padding
+    paddingHorizontal: 15, // left & right padding
+    borderWidth: 1, // outlined border
+    borderColor: "#184D36", // dark green
+    borderRadius: 12, // rounded corners
+    marginTop: 70,
+    width: "125%",
+  },
+  userImage: {
+    width: 40,
+    height: 40,
+    color: "#184D36",
+    marginRight: 10, // space between icon and text
+  },
+  userButtonText: {
+    fontWeight: "800",
+    color: "#31693E",
+    fontSize: 20,
+  },
+  organizationButton: {
+    flexDirection: "row", // icon and text side by side
+    alignItems: "center", // vertically center
+    justifyContent: "flex-start", // align content to the left
+    paddingVertical: 5, // top & bottom padding
+    paddingHorizontal: 15, // left & right padding
+    borderWidth: 1, // outlined border
+    borderColor: "#184D36", // dark green
+    borderRadius: 12, // rounded corners
+    marginTop: 10,
+    width: "125%",
+  },
+  closeText: {
+    fontWeight: "600",
+    fontSize: 20,
+    marginTop: 20,
+  },
   signUpButtonText: {
     fontFamily: "Inter",
     fontSize: 20,
