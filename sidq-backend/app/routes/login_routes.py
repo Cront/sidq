@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from werkzeug import security
 
-from models import Organization, User
+from ..models import Organization, User
 
 login_bp = Blueprint('login_bp', __name__)
 
