@@ -15,10 +15,10 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { Link, useRouter } from "expo-router";
-import GoogleSignInButton from "./GoogleSignInButton";
-import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
-import * as AuthSession from "expo-auth-session";
+// import GoogleSignInButton from "./GoogleSignInButton";
+// import * as WebBrowser from "expo-web-browser";
+// import * as Google from "expo-auth-session/providers/google";
+// import * as AuthSession from "expo-auth-session";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
@@ -35,16 +35,17 @@ export default function LogInScreen() {
   //   redirectUri,
   // });
   //
+
+  const router = useRouter();
   const [logInInfo, setLogInInfo] = useState("");
   const [logInPassword, setLogInPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
-  // const handleLogin = (userName: string, password: string) => {};
+  const handleLogin = (userName: string, password: string) => {};
 
   const handleSignUpSelect = (role: "user" | "organization") => {
     setModalVisible(false);
 
-    const router = useRouter();
     if (role === "user") {
       router.push("/auth/SignUpScreenUser");
     } else {
@@ -80,7 +81,7 @@ export default function LogInScreen() {
           <View style={styles.manualSignIn}>
             <TextInput
               style={styles.input}
-              placeholder="Email Address or Phone Number"
+              placeholder="Email Address"
               value={logInInfo}
               onChangeText={setLogInInfo}
             />

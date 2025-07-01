@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from .config import Config
-from .extensions import db, migrate
+from .extensions import db, migrate, jwt
 from .routes.login_routes import login_bp
 from .routes.organization_routes import organization_bp
 from .routes.user_routes import user_bp
@@ -19,6 +19,7 @@ def create_app():
     CORS(app)
     db.init_app(app)
     migrate.init_app(app, db)
+    jwt.init_app(app)
 
     from .models import Organization, User
 
