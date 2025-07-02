@@ -42,9 +42,9 @@ def login():
             return (jsonify({"message": "Incorrect password"}))
 
         access_token = create_access_token(
-            identity={"id": user.id, "type": "user"})
+            identity=str(user.id))
         refresh_token = create_refresh_token(
-            identity={"id": user.id, "type": "user"})
+            identity=str(user.id))
 
         return jsonify({
             "message": "Login successful",
@@ -63,10 +63,10 @@ def login():
             return (jsonify({"message": "Incorrect password"}))
 
         access_token = create_access_token(
-            identity={"id": org.id, "type": "organization"})
+            identity=str(org.id))
 
         refresh_token = create_refresh_token(
-            identity={"id": org.id, "type": "organization"})
+            identity=str(org.id))
 
         return jsonify({
             "message": "Login successful",
