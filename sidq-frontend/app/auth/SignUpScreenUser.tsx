@@ -13,7 +13,7 @@ import {
   View,
 } from "react-native";
 import GoogleSignInButton from "./GoogleSignInButton";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import * as AuthSession from "expo-auth-session";
@@ -90,6 +90,7 @@ export default function SignUpScreenUser() {
       const result = await response.json();
       console.log("Success: ", result);
       alert("User account successfully created!");
+      router.push("/dashboard/user/DashboardHome");
     } catch (error) {
       console.error("Network error: ", error);
       alert("Error: " + error);
@@ -103,6 +104,7 @@ export default function SignUpScreenUser() {
   const [userPassword, setUserPassword] = useState("");
   const [userConfirmPassword, setUserConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // TODO: set up view password functionality
+  const router = useRouter();
 
   // TODO: fix 'Continue with Google' credentials issue (probably need to make Apple dev and Android dev account and connect to API)
 

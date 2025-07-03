@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { Link, useRouter } from "expo-router";
+import { loginUser } from "../services/api";
 // import GoogleSignInButton from "./GoogleSignInButton";
 // import * as WebBrowser from "expo-web-browser";
 // import * as Google from "expo-auth-session/providers/google";
@@ -37,11 +38,24 @@ export default function LogInScreen() {
   //
 
   const router = useRouter();
-  const [logInInfo, setLogInInfo] = useState("");
-  const [logInPassword, setLogInPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleLogin = (userName: string, password: string) => {};
+  const handleLogin = async () => {
+    try {
+      const user = await loginUser(email, password);
+      console.log("User has logged in!");
+
+      if (user.type === "user") {
+        router.push("/dashboard/user/DashboardHome");
+      } else {
+        router.push("/dashboard/org/DashboardHome");
+      }
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
 
   const handleSignUpSelect = (role: "user" | "organization") => {
     setModalVisible(false);
@@ -82,19 +96,19 @@ export default function LogInScreen() {
             <TextInput
               style={styles.input}
               placeholder="Email Address"
-              value={logInInfo}
-              onChangeText={setLogInInfo}
+              value={email}
+              onChangeText={setEmail}
             />
 
             <TextInput
               style={styles.input}
               placeholder="Password"
-              value={logInPassword}
-              onChangeText={setLogInPassword}
+              value={password}
+              onChangeText={setPassword}
               secureTextEntry={true}
             />
 
-            <TouchableOpacity style={styles.logInButton}>
+            <TouchableOpacity style={styles.logInButton} onPress={handleLogin}>
               <Text style={styles.logInText}>Log in</Text>
             </TouchableOpacity>
           </View>

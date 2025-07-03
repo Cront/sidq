@@ -15,7 +15,7 @@ import {
 
 import * as AuthSession from "expo-auth-session";
 import * as Google from "expo-auth-session/providers/google";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect, useState } from "react";
 import GoogleSignInButton from "./GoogleSignInButton";
@@ -99,11 +99,14 @@ export default function SignUpScreenOrg() {
       const result = await response.json();
       console.log("Success", result);
       alert("Organization account succesfully created!");
+      router.push("/dashboard/org/DashboardHome");
     } catch (error) {
       console.error("Network error:", error);
       alert("Error: " + error);
     }
   };
+
+  const router = useRouter();
   const [organizationName, setOrganizationName] = useState("");
   const [organizationEmail, setOrganizationEmail] = useState("");
   const [organizationPassword, setOrganizationPassword] = useState("");
