@@ -66,7 +66,7 @@ def create_org_account():
     # check that required fields given
     if not name:
         return (jsonify({"message": "You must include organization name"}), 400)
-    if not email:
+    if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
         return (jsonify({"message": "You must include organization email"}), 400)
     if not password:
         return (jsonify({"message": "You must include a password"}), 400)

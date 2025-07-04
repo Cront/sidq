@@ -1,4 +1,6 @@
-from flask import Blueprint, request, jsonify
+import re
+
+from flask import Blueprint, jsonify, request
 from werkzeug.security import generate_password_hash
 
 from ..extensions import db
@@ -37,8 +39,8 @@ def create_user_account():
         return jsonify({"message": "You must include user's first name"}), 400
     if not last_name:
         return jsonify({"message": "You must include user's last name"}), 400
-    if not email:
-        return jsonify({"message": "You must include user's email"}), 400
+    if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return jsonify({"message": "Invalid email address"}), 400
     if not password:
         return jsonify({"message": "You must include user's password"}), 400
 
@@ -94,9 +96,9 @@ def delete_user_account(user_id):
     user = User.query.get(user_id)
 
     if not user:
-        return jsonify({"message": "User does not exist in the database"})
+        return jsonify({"message": "User does not exist in the database"}), 404
 
-    db.session.delete(user_id)
+    db.session.delete(user)
     db.session.commit()
 
-    return jsonify({"message": "user account deleted"})
+    return jsonify({"message": "user account deleted"}), 200
