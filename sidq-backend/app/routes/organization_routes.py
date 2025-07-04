@@ -67,9 +67,9 @@ def create_org_account():
     if not name:
         return (jsonify({"message": "You must include organization name"}), 400)
     if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        return (jsonify({"message": "You must include organization email"}), 400)
-    if not password:
-        return (jsonify({"message": "You must include a password"}), 400)
+        return (jsonify({"message": "Invalid email address"}), 400)
+    if not password or (len(password) < 8) or not re.search(r'[A-Z]', password) or not re.search(r'[a-z]', password):
+        return (jsonify({"message": "Invalid password"}), 400)
 
     # check same email not already used
     if Organization.query.filter_by(email=email).first() or User.query.filter_by(email=email).first():
