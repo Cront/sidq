@@ -58,7 +58,7 @@ def create_user_account():
         middle_name=middle_name,
         last_name=last_name,
         email=email,
-        password=generate_password_hash(password),
+        password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=16),
         email_verified=email_verified,
         address=address,
         phone_number=phone_number,
