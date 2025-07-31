@@ -1,5 +1,3 @@
-import re
-
 from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 from werkzeug.security import generate_password_hash
