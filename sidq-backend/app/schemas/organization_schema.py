@@ -6,7 +6,12 @@ class OrganizationSignupSchema(Schema):
     email = fields.Email(required=True)
     password = fields.Str(required=True, validate=[
         validate.Length(min=8),
-        # validate.Regexp(r'[A-Z]', error='Must contain at least one uppercase letter.')
-        # validate.Regexp(r'[a-z]', error='Must contain at least one lowercase letter.')
-        validate.Regexp(r'^(?=.*[a-z])(?=.*[A-Z]).+$', error='Password must include at least one uppercase and one lowercase letter')
+        validate.Regexp(
+            r'^(?=.*[a-z])(?=.*[A-Z]).+$', error='Password must contain at least one uppercase and one lowercase letter'
+        )
     ])
+
+    # optional fields
+    address = fields.Str(required=False, allow_none=True)
+    phone_number = fields.Str(required=False, allow_none=True)
+    website_link = fields.Url(required=False, allow_none=True)

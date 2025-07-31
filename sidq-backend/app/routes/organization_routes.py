@@ -1,10 +1,13 @@
 from flask import Blueprint, jsonify, request
+from marshmallow import ValidationError
 from werkzeug.security import generate_password_hash
 
 from ..extensions import db
 from ..models import Organization, User
+from ..schemas.organization_schema import OrganizationSignupSchema
 
 organization_bp = Blueprint('organization_bp', __name__)
+organization_schema = OrganizationSignupSchema()
 
 
 @organization_bp.route('/', methods=["GET"])
@@ -48,40 +51,27 @@ def delete_all_org_accounts():
 @organization_bp.route('/create_org_account', methods=["POST"])
 def create_org_account():
     """Create a new organization account to use Sidq"""
-    # parse entire JSON body first
-    data = request.get_json()
 
-    # required fields
-    name = data.get("name")
-    email = data.get("email")
-    password = data.get("password")
+    try:
+        data = organization_schema.load(request.get_json())
+    except ValidationError as err:
+        return jsonify({"errors": err.messages}), 400
 
-    # optional fields
-    address = data.get("address")
-    phone_number = data.get("phone_number")
-    website_link = data.get("website_link")
+    email = data["email"]
 
     # TODO: media data storage
-
-    # check that required fields given
-    if not name:
-        return (jsonify({"message": "You must include organization name"}), 400)
-    if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        return (jsonify({"message": "Invalid email address"}), 400)
-    if not password or (len(password) < 8) or not re.search(r'[A-Z]', password) or not re.search(r'[a-z]', password):
-        return (jsonify({"message": "Invalid password"}), 400)
 
     # check same email not already used
     if Organization.query.filter_by(email=email).first() or User.query.filter_by(email=email).first():
         return (jsonify({"message": "Email already in use"}), 409)
 
     new_org = Organization(
-        name=name,
+        name=data["name"],
         email=email,
-        password=generate_password_hash(password),
-        address=address,
-        phone_number=phone_number,
-        website_link=website_link
+        password=generate_password_hash(data["password"], method='pbkdf2:sha256', salt_length=16),
+        address=data.get("address"),
+        phone_number=data.get("phone_number"),
+        website_link=data.get("website_link")
     )
 
     try:
@@ -89,6 +79,6 @@ def create_org_account():
         db.session.commit()
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": str(e)}, 500)
+        return jsonify({"message": str(e)}), 500
 
-    return jsonify({"message": "Organization account created!"}, 201)
+    return jsonify({"message": "Organization account created!"}), 201
